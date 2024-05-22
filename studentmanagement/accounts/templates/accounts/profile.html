@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <style>
+        /* Custom CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-info label {
+            flex: 0 0 150px; /* Fixed width for labels */
+            font-weight: bold;
+            color: #555;
+        }
+        .profile-info p {
+            margin: 0;
+            padding-left: 10px;
+            color: #333;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .edit-profile-link {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Profile Picture -->
+        {% if user.image %}
+            <img src="{{ user.image.url }}" alt="Profile Picture" class="profile-picture">
+        {% endif %}
+
+        <!-- Personal Information -->
+        <div class="profile-info">
+            <label>First Name:</label>
+            <p>{{ user.first_name }}</p>
+        </div>
+        <div class="profile-info">
+            <label>Last Name:</label>
+            <p>{{ user.last_name }}</p>
+        </div>
+        <div class="profile-info">
+            <label>Phone:</label>
+            <p>{{ user.phone }}</p>
+        </div>
+        <div class="profile-info">
+            <label>Email:</label>
+            <p>{{ user.email }}</p>
+        </div>
+        <div class="profile-info">
+            <label>Date of Birth:</label>
+            <p>{{ user.date_of_birth }}</p>
+        </div>
+
+        <!-- Class Information -->
+        <div class="profile-info">
+            <label>Class:</label>
+            <p>{{ student.student_class.name }}</p>
+        </div>
+
+        <!-- Edit Profile Button -->
+        <a href="{% url 'accounts:editprofile' %}" class="edit-profile-link">Edit Profile</a>
+    </div>
+</body>
+</html>
